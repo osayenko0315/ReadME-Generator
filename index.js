@@ -35,26 +35,9 @@ const questions = [
     },
     {
         type: "input",
-        message: "What does the user need to know about contributing to the repo?",
-        name: "contribution"
-    },
-    {
-        type: "input",
         message: "What command should be run for testing?",
         name: "tests"
     },
-    {
-        type: "list",
-        message: "What kind of license should your project have?",
-        name: "license",
-        choices: [
-            "MIT",
-            "APACHE",
-            "GPL",
-            "BSD",
-            "None"
-        ]
-    }
 ];
 function writeToFile(fileName, data) {
     let content = generateMarkdown(data);
