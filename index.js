@@ -25,17 +25,12 @@ const questions = [
     },
     {
         type: "input",
-        message: "What command should be run to install dependencies?",
+        message: "How do I use this application?",
         name: "installation"
     },
     {
         type: "input",
-        message: "What does the user need to know about using the repo?",
-        name: "usage"
-    },
-    {
-        type: "input",
-        message: "What command should be run for testing?",
+        message: "What do you want to call this readme?",
         name: "tests"
     },
 ];
