@@ -2,57 +2,75 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const generateMarkdown = require('./utils/generateMarkdown');
 
-const questions = [   
+const questions = [
     {
-        type: 'input',
-        name: 'github',
-        message: 'Enter your GitHub Username (Required)',
-        validate: githubInput => {
-            if (githubInput) {
-            return true;
-            } else {
-            console.log('Please enter your GitHub username!');
-            return false;
-            }
-    }
+        type: "input",
+        message: "What is your GitHub username?",
+        name: "username"
     },
     {
-        type: 'input',
-        name: 'questionsEmail',
-        message: 'Enter an email users can reach out to if they have questions. (Required)',
-        validate: questionsEmailInput => {
-            if (questionsEmailInput) {
-            return true;
-            } else {
-            console.log('Please enter an email!');
-            return false;
-            }
-    }
-    },    
-
+        type: "input",
+        message: "What is your email address?",
+        name: "email"
+    },
     {
-        type: 'input',
-        name: 'projectTitle',
-        message: 'What is the title of your project? (Required)',
-        validate: projectTitleInput => {
-            if (projectTitleInput) {
-            return true;
-            } else {
-            console.log('Please enter the title of your project!');
-            return false;
-            }
+        type: "input",
+        message: "What is the name of your project?",
+        name: "title"
+    },
+    {
+        type: "input",
+        message: "Please write a short description of your project:",
+        name: "description"
+    },
+    {
+        type: "input",
+        message: "What command should be run to install dependencies?",
+        name: "installation"
+    },
+    {
+        type: "input",
+        message: "What does the user need to know about using the repo?",
+        name: "usage"
+    },
+    {
+        type: "input",
+        message: "What does the user need to know about contributing to the repo?",
+        name: "contribution"
+    },
+    {
+        type: "input",
+        message: "What command should be run for testing?",
+        name: "tests"
+    },
+    {
+        type: "list",
+        message: "What kind of license should your project have?",
+        name: "license",
+        choices: [
+            "MIT",
+            "APACHE",
+            "GPL",
+            "BSD",
+            "None"
+        ]
+    }
+];
+function writeToFile(fileName, data) {
+    let content = generateMarkdown(data);
+    fs.writeFile(fileName, content, function (error) {
+        if (error) {
+            return console.log(error)
         }
-        }
-        ,  {
-            type: 'input',
-            name: 'description',
-            message: 'Provide a description of the project (Required)',
-            validate: descriptionInput => {
-              if (descriptionInput) {
-                return true;
-              } else {
-                console.log('You need to enter a project description!');
-                return false;
-              }
-        }
-        },
+        console.log('success')
+    });
+}
+
+function init() {
+    inquirer.prompt(questions).then(function (data) {
+        var fileName = 'README.md';
+        writeToFile(fileName, data)
+    });
+}
+
+init();
