@@ -12,3 +12,10 @@
     "inquirer": "8.2.4"
   }
 }
+"devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/osayenko0315/ReadME-Generator"
+  },
+  "bugs": {
+    "url": "https://github.com/osayenko0315/ReadME-Generator"
